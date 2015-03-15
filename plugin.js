@@ -114,7 +114,8 @@
                 this.displayDeck();
               }.bind(this));
 
-              // this.deal(55);
+              this.deal(5);
+              this.displayHand();
         },
 
         shuffle: function() {
@@ -131,11 +132,11 @@
             
             this.hand.push( this.deck.pop() );
           }
-          this.displayDeck();
+          // this.displayDeck();
           // console.log(this.deck.length);
         },
 
-        displayCard: function(card) {
+        displayCard: function(card, selector) {
             var rank = card.rank;
             var suit = card.suit;
 
@@ -146,15 +147,24 @@
                     '<span class="suit">' + suit + '</span>' +
                 '</div>';
 
-            this.$element.find('.cards').append(cardHTML);
+            this.$element.find(selector).append(cardHTML);
         },
 
         displayDeck: function() {
             // for all cards in our deck
             // make an HTML element
             // put element in the cards element
-            this.$element.find('.cards').empty();
-            this.deck.forEach(this.displayCard.bind(this));
+            this.$element.find('.deck').empty();
+            this.deck.forEach(function(card) {
+              this.displayCard(card, '.deck');
+            }.bind(this));
+        },
+
+        displayHand: function() {
+            this.$element.find('.hand').empty();
+            this.hand.forEach(function(card) {
+              this.displayCard(card, '.hand');
+            }.bind(this));
         }
 
     });
