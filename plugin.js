@@ -114,7 +114,7 @@
                 this.displayDeck();
               }.bind(this));
 
-              this.deal(55);
+              // this.deal(55);
         },
 
         shuffle: function() {
@@ -123,11 +123,12 @@
 
         deal: function(howMany) {
 
-          for(var i = 0; i < howMany; i++) {
-            if (howMany > this.deck.length) {
-                howMany = this.deck.length;
-            }
+          if (howMany > this.deck.length) {
+              howMany = this.deck.length;
+          }
 
+          for(var i = 0; i < howMany; i++) {
+            
             this.hand.push( this.deck.pop() );
           }
           this.displayDeck();
