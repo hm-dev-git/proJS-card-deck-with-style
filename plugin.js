@@ -96,6 +96,7 @@
         this._defaults = defaults;
         this._name = pluginName;
         this.deck = makeDeck();
+        this.hand = [];
         this.init();
     }
 
@@ -112,10 +113,25 @@
                 this.shuffle();
                 this.displayDeck();
               }.bind(this));
+
+              this.deal(55);
         },
 
         shuffle: function() {
             this.deck = shuffle( this.deck );
+        },
+
+        deal: function(howMany) {
+
+          for(var i = 0; i < howMany; i++) {
+            if (howMany > this.deck.length) {
+                howMany = this.deck.length;
+            }
+
+            this.hand.push( this.deck.pop() );
+          }
+          this.displayDeck();
+          // console.log(this.deck.length);
         },
 
         displayCard: function(card) {
