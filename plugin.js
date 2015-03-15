@@ -104,8 +104,7 @@
     $.extend(Plugin.prototype, {
         init: function () {
               this.shuffle();
-              // this.displayCard( this.deck[0] );
-              this.displayDeck();
+              // this.displayCard( this.deck[0] )
 
               var shuffleHTML = '<button class="shuffle">shuffle</button>';
               this.$element.find('.controls').append(shuffleHTML);
@@ -116,6 +115,7 @@
 
               this.deal(5);
               this.displayHand();
+              this.displayDeck();
         },
 
         shuffle: function() {
@@ -133,7 +133,7 @@
             this.hand.push( this.deck.pop() );
           }
           // this.displayDeck();
-          // console.log(this.deck.length);
+          console.log(this.deck.length);
         },
 
         displayCard: function(card, selector) {
@@ -150,21 +150,19 @@
             this.$element.find(selector).append(cardHTML);
         },
 
+        displayCards: function(cards, selector) {
+          this.$element.find(selector).empty();
+          cards.forEach(function(card) {
+            this.displayCard(card, selector);
+          }.bind(this));
+        },
+
         displayDeck: function() {
-            // for all cards in our deck
-            // make an HTML element
-            // put element in the cards element
-            this.$element.find('.deck').empty();
-            this.deck.forEach(function(card) {
-              this.displayCard(card, '.deck');
-            }.bind(this));
+            this.displayCards(this.deck, '.deck');
         },
 
         displayHand: function() {
-            this.$element.find('.hand').empty();
-            this.hand.forEach(function(card) {
-              this.displayCard(card, '.hand');
-            }.bind(this));
+            this.displayCards(this.hand, '.hand');
         }
 
     });
