@@ -108,6 +108,10 @@
 
               var shuffleHTML = '<button class="shuffle">shuffle</button>';
               this.$element.find('.controls').append(shuffleHTML);
+              this.$element.find('.shuffle').on('click', function() {
+                this.shuffle();
+                this.displayDeck();
+              }.bind(this));
         },
 
         shuffle: function() {
@@ -125,14 +129,14 @@
                     '<span class="suit">' + suit + '</span>' +
                 '</div>';
 
-            this.$element.append(cardHTML);
+            this.$element.find('.cards').append(cardHTML);
         },
 
         displayDeck: function() {
             // for all cards in our deck
             // make an HTML element
             // put element in the cards element
-
+            this.$element.find('.cards').empty();
             this.deck.forEach(this.displayCard.bind(this));
         }
 
