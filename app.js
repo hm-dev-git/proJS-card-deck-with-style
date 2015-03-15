@@ -1,1 +1,1 @@
-$('.cards').blackjack();
+$('.blackjack').blackjack();

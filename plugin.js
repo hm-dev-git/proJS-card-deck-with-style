@@ -105,10 +105,13 @@
               this.shuffle();
               // this.displayCard( this.deck[0] );
               this.displayDeck();
-        },
-        shuffle: function() {
-            this.deck = shuffle( this.deck);
 
+              var shuffleHTML = '<button class="shuffle">shuffle</button>';
+              this.$element.find('.controls').append(shuffleHTML);
+        },
+
+        shuffle: function() {
+            this.deck = shuffle( this.deck );
         },
 
         displayCard: function(card) {
